@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<!-- your webpage info goes here -->
+
+    <title>Embedded Systems </title>
+	
+	<meta name="author" content="Lotte Verbraeken" />
+	<meta name="description" content="" />
+
+<!-- you should always add your stylesheet (css) in the head tag so that it starts loading before the page html is being displayed -->	
+	<link rel="stylesheet" href="style.css" type="text/css" />
+	
+</head>
+<body>
+
+<!-- webpage content goes here in the body -->
+
+	<div id="page">
+		<div id="header">
+			<h1>Embedded Systems</h1>
+		</div>
+		<div id="nav">
+			<ul>
+				<li><a href="index.html">Home</a></li>
+				<li><a href="status.html">ProjectStatus</a></li>
+				<li><a href="galerij.html">Galerij</a></li>
+                <li><a href="schema.html">Schema's</a></li>
+                <li><a href="code.html">Code</a></li>
+			</ul>	
+		</div>
+		<div id="content">
+			<h2>Projectstatus</h2>
+            <p>Hier kan je de verschillende fases van mijn project opvolgen.</p>
+            
+            <h4>Fase 1</h4>
+			<p>
+                In deze fase gaan we aan onze arduino een scherm hangen. Op dit scherm gaan we de tijd + datum kunnen aflezen, alsook de temperatuur.
+                <br><br>
+                <b>25/11/2015</b><br>
+                Vandaag heb ik eindelijk mijn Arduino Uno Wifi aangekregen, dus kon ik beginnen met het maken van mijn wekker.<br>
+                Om te beginnen moet ik de RTC DS1307 zelf in elkaar steken, dat betekent dus solderen! Iets wat ik nog nooit gedaan heb. <br>
+                Na even oefenen heb ik mij gewaagd aan het solderen van alle pins op de DS1307. Al bij al is het nog vrij goed gelukt voor een eerste keer. <br>
+                Nu de RTC DS1307 in elkaar steekt, kunnen we gaan testen of alles goed is gelopen. <br><br>
+                
+                Om de een of andere reden werkt de RTC DS1307 niet met de Arduino Uno Wifi. Ik heb geprobeerd om deze te testen met een voorbeeld van de RCTLib, maar de Arduino software wil dit niet compileren. 
+                Als ik dit test met het gewone Arduino Uno board lukt dit wel, dus het probleem bevindt zich bij de wire.h library, bij het wifi board herkent hij deze library niet. <br><br>
+                
+                Voorlopig heb ik de DS1307 dus enkel getest met het Arduino Uno board, hierbij wordt er om de seconde in de COM3 de tijd en datum geprint. <br><br>
+                
+                De volgende stap is uitzoeken of ik dit werkende kan krijgen met het wifi board, en de datum + tijd printen om mijn SPI LCD.
+                <br><br><br>
+                
+                <b>28/11/2016</b><br>
+                Vandaag heb ik het probleem met het wifi board opgelost. Dus momenteel krijg ik onderstaande output van de RTC module.
+                <img src="img/28-11/rtcTest.png" width="500px" height="250px"/><br><br>
+                
+                Volgende stap is dus het SPI LCD aansluiten zodat de datum en tijd daarop getoond worden ipv op de seriële monitor. 
+                <br><br><br>
+                
+                <b>29/11/2016</b><br>
+                Vandaag gaan we het SPI LCD aansluiten op de arduino zodat we de tijd en datum kunnen bekijken. <br>
+                Het scherm heb ik via een 3-wire methode geconnecteerd met mijn Arduino Uno Wifi. <br>
+                Na wat zoeken naar de juiste library heb ik een test kunnen uitvoeren met een voorbeeld uit deze library. Hieronder vindt u een filmpje daarover. 
+                <video width="320" height="240" controls>
+                    <source src="img/2-12/VID_20161202_142005.mp4" type="video/mp4">
+                </video>
+                <br><br><br>
+                
+                <b>2/12/2016</b><br>
+                Vandaag gaan we proberen om de tijd en datum dat we uit het RTC module krijgen op het scherm te tonen. <br><br>
+                
+                <b>26/12/2016</b><br>
+                Na een hele lange tijd aan problemen met het SPI scherm heb ik besloten om dit scherm te vervangen door het gewone 16x2 lcdscherm. <br>
+                Dit is naar mijn mening ook gemakkelijk in gebruik, vooral met de setCursor-methode die in de LiquidCrystel library zit. Het nadeel is dat het meer connecties met het breadboard nodig heeft dan het SPI-scherm.<br>
+                Door deze wijziging is het schema ook gewijzigd zoals je kan zien op de schema pagina.<br>
+                Ik heb ook de DS1307 rtc module vervangen door de DS3231 rtc module. Dit omdat ik bij de DS1307 altijd 256:256 op het scherm te zien kreeg, waarschijnlijk omdat er toch iets is misgegaan tijdens het solderen. <br>
+                Daarom heb ik de DS3231 module gekocht en nadat ik dit had aangesloten werkte dit prima.<br>
+                
+                Image DS1307 + LCD<br><br><br>
+                
+                Nu dat het scherm en de rtc module goed zijn aangesloten, gaan we de tijd en datum tonen op het lcd-scherm. <br>
+                Image <br><br><br>
+                
+                <b>2/01/2017</b><br>
+                Vandaag heb ik mij bezig gehouden om een menu te maken voor de wekker. Via deze menu kan je dan je alarmen instellen, bekijken, resetten en je kan ook een klokinstelling aanpassen (12/24u).<br>
+                Hieronder vindt je een video met een demonstratie van deze menu. <br><br> 
+                
+<<<<<<< HEAD
+
+=======
+                Video menu<br><br>
+>>>>>>> parent of 3ee9d57... update 3/1
+                
+                In bovenstaande video kan je de menu raadplegen en bekijken met de knoppen op het breadboard. <br>
+                Nu gaan we elk menu-item uitwerken zodat het op een echte wekker begint te lijken. <br><br>
+                
+                De menu-items "Alle alarmen af", "Actieve alarmen", "Rest alarmen" en "12/24 uur" zijn al uitgewerkt. De andere items "Set alarm" en "Alarmen bekijken" zijn deels uitgewerkt. <br>
+<<<<<<< HEAD
+                Hieronder kunt u al verschillende demo's bekijken van de uitgewerkte menu-items.<br>
+                
+               
+                
+                Hieronder vindt u een demo van het instellen van een alarm. 
+                <br>
+=======
+                Hieronder kunt u al een demo bekijken van de uitgewerkte menu-items.<br><br>
+                
+                Video demo menu-items<br><br>
+>>>>>>> parent of 3ee9d57... update 3/1
+                
+                
+			     
+            </p>
+            
+            <h4>Fase 2</h4>
+			<p>
+<<<<<<< HEAD
+                Nu we de tijd en datum kunnen aflezen en een alarm handmatig kunnen instellen, gaan we onze arduino verbinden via wifi om zo een alarm in te stellen via de android applicatie.
+=======
+                Nu we de tijd, datum en temperatuur kunnen aflezen, gaan we onze arduino verbinden via wifi met onze Google-Calendar. 
+>>>>>>> parent of 3ee9d57... update 3/1
+			</p>
+            
+            <h4>Fase 3</h4>
+			<p>
+               Nadat we kunnen connecteren met Google-Calendar, gaan we onze wekker automatisch een alarm laten instellen als je een afspraak toevoegt.
+			</p>
+            
+            <h4>Fase 4</h4>
+			<p>
+                We kunnen al verbinden met Google-Calendar en alarmen instellen. Nu gaan we het live verkeer er aan toevoegen, zodat we nooit meer te laat komen!
+			</p>
+                        
+		</div>
+		<div id="footer">
+			<p>
+				Lotte Verbraeken
+			</p>
+		</div>
+	</div>
+</body>
+</html>
