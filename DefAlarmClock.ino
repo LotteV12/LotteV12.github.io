@@ -26,7 +26,7 @@ int offPin = A1;//multi-use button
 int downPin = A2;//pin to decrease value
 int upPin = A3;//button to increase value
 
-char daysOfTheWeek[7][12] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+char daysOfTheWeek[7][12] = {"Zo", "Ma", "Di", "Wo", "Do", "Vr", "Za"};
 
 char ssid[] = "telenet-1C060";     //  your network SSID (name)
 char pass[] = "bureau15";  // your network password
@@ -109,8 +109,8 @@ void setup() {
 void loop() {
   dispTime(0);
 
-  delay(50);
-  if (readButton(menuPin)) { //start menu if menupin pressed
+  /*delay(50);
+    if (readButton(menuPin)) { //start menu if menupin pressed
     switch (menu()) {
       case 0: //set alarm
         setAlarm();
@@ -121,7 +121,7 @@ void loop() {
         dispTime(1);
         break;
     }
-  }
+    }*/
 }
 
 int menu() { // return -1 for close and other
@@ -167,22 +167,45 @@ int menu() { // return -1 for close and other
 
 void dispTime(boolean time) {
 
-  if (hour < 10) {
+  DateTime now = rtc.now();
+
+  /*int hours = now.hour();
+    int minutes = now.minute();
+
+    lcd.setCursor(1, 0);
+    if (hours < 10) {
+    lcd.print("0");
+    lcd.print(hours);
+    } else {
+    lcd.print(hours);
+    }
+
+    lcd.print(":");
+    if (minutes < 10) {
+    lcd.print("0");
+    lcd.print(minutes);
+    } else {
+    lcd.print(minutes);
+    }*/
+
+  if (now.hour() < 10) {
     Serial.print("0");
-    Serial.println(hour);
+    Serial.print(now.hour());
   } else {
-    Serial.println(hour);
+    Serial.print(now.hour());
   }
 
   Serial.print(":");
-  if (minute < 10) {
+  if (now.minute() < 10) {
     Serial.print("0");
-    Serial.print(minute);
+    Serial.print(now.minute());
+    Serial.print("\t");
   } else {
-    Serial.print(minute);
+    Serial.print(now.minute());
+    Serial.print("\t");
   }
 
-  checkAlarms();
+  //checkAlarms();
   dispTemp();
   dispDay();
 }
@@ -191,15 +214,24 @@ void dispDay() { //print date in d.m.y on second line
 
   DateTime now = rtc.now();
 
-  lcd.setCursor(2, 1);
-  lcd.print(daysOfTheWeek[now.dayOfTheWeek()]);
-  lcd.print(" ");
-  lcd.print(now.day());
-  lcd.print("/");
-  lcd.print(now.month());
-  lcd.print("/");
-  lcd.print(now.year());
-  lcd.print("    ");
+  /*lcd.setCursor(2, 1);
+    lcd.print(daysOfTheWeek[now.dayOfTheWeek()]);
+    lcd.print(" ");
+    lcd.print(now.day());
+    lcd.print("/");
+    lcd.print(now.month());
+    lcd.print("/");
+    lcd.print(now.year());
+    lcd.print("    ");*/
+
+  Serial.print(daysOfTheWeek[now.dayOfTheWeek()]);
+  Serial.print(" ");
+  Serial.print(now.day());
+  Serial.print("/");
+  Serial.print(now.month());
+  Serial.print("/");
+  Serial.print(now.year());
+  Serial.print("   ");
 }
 
 void dispTemp() {
@@ -213,9 +245,12 @@ void dispTemp() {
     return;
   }
 
-  lcd.setCursor(9, 0);
-  lcd.print(t);
-  lcd.print("C");
+  /*lcd.setCursor(9, 0);
+    lcd.print(t);
+    lcd.print("C");*/
+
+  Serial.print(t);
+  Serial.print("*C\n");
 }
 
 
